@@ -280,7 +280,7 @@ $ npx tsx place2map.ts 東京タワー
 ![alt text](image-1.png)
 
 
-```
+```typescript:place2map.ts
 /**
  * 【住所から地図を表示するコンソールアプリ】
  * $ npx tsx place2map.ts 東京タワー
