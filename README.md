@@ -7,7 +7,7 @@
 
 ## はじめに
 
-以前の記事[ターミナル内で画像を表示する](https://qiita.com/murasuke/items/5957cd228d5209eea5f9)を応用して、ターミナル内に地図を表示してみたいと思います
+[ターミナル内で画像を表示する](https://qiita.com/murasuke/items/5957cd228d5209eea5f9)や、[緯度、経度をもとに国土地理院タイルを表示する方法](https://qiita.com/murasuke/items/ad81b7b726a3463fa3fe)を応用して、ターミナル内に地図を表示してみたいと思います
 
 ## 環境
 (Windowsでしか確認していませんが、Sixel対応ターミナルであれば表示できるはず)
@@ -15,13 +15,14 @@
 * node.js
 * sixel対応ターミナル
    * git for windows(のGit Bash)
+   * mintty
 
 
 利用npmライブラリ
-* [tsx](https://www.npmjs.com/package/tsx)
-* [sixel](https://www.npmjs.com/package/sixel)
-* [canvas](https://www.npmjs.com/package/canvas)
-* [xml2js](https://www.npmjs.com/package/xml2js)
+* [tsx](https://www.npmjs.com/package/tsx) : TypeScriptの実行環境
+* [sixel](https://www.npmjs.com/package/sixel) : 画像をSixelに変換するライブラリ
+* [canvas](https://www.npmjs.com/package/canvas) : nodeではcanvasがないので利用
+* [xml2js](https://www.npmjs.com/package/xml2js) : xmlをjsonに変換(WebAPI用)
 
 出典：[地理院タイルについて](https://maps.gsi.go.jp/development/siyou.html)
 
@@ -81,9 +82,9 @@ export async function imgToSixel(filename, palLimit = MAX_PALETTE) {
 
 [国土地理院タイルの仕様](https://maps.gsi.go.jp/development/siyou.html#siyou-zm)に基づき、画像を取得します
 
-詳細はこちらをご確認ください
+詳細は[こちら](https://qiita.com/murasuke/items/ad81b7b726a3463fa3fe)をご確認ください
 
-[緯度、経度をもとに国土地理院タイルを表示する方法](https://qiita.com/murasuke/items/ad81b7b726a3463fa3fe)
+https://qiita.com/murasuke/items/ad81b7b726a3463fa3fe
 
 ```typescript:calc-map-tile.ts
 /**
@@ -214,7 +215,7 @@ export const tileUrl = (
 
 ## ②緯度、経度から地図を表示
 
-緯度と経度をパラメータで受け取り、コンソールに表示します
+緯度と経度をパラメータで受け取り、地図をコンソールに表示します
 
 * `calcTileInfo()`で、緯度経度からタイルの位置を取得
 * `tileUrl()`で、地理院タイルの画像URLに変換
@@ -267,7 +268,7 @@ main();
 
 ## ③地名から地図を表示する
 
-地名や住所パラメータで受け取り、コンソールに表示します
+地名や住所パラメータで受け取り、地図をコンソールに表示します
 
 
 * `placeToCoord()`で「地名」をwww.geocoding.jpのAPIで緯度経度に変換
